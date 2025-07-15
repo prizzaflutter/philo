@@ -6,7 +6,7 @@
 /*   By: iaskour <iaskour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 13:11:50 by iaskour           #+#    #+#             */
-/*   Updated: 2025/07/15 13:12:00 by iaskour          ###   ########.fr       */
+/*   Updated: 2025/07/15 13:20:48 by iaskour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@ char	*is_overflow(int set, char	*new_status)
 	if (set)
 		is_overflow = new_status;
 	return (is_overflow);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
 }
 
 int	ft_atoi(const char *str)

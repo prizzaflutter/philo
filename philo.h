@@ -6,6 +6,9 @@
 #include <pthread.h>
 #include <sys/time.h>
 
+int	ft_atoi(const char *str);
+int	ft_strcmp(const char *s1, const char *s2);
+
 typedef struct s_philo_config{
 	long	time_to_eat;
 	long	time_to_die;

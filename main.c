@@ -6,7 +6,7 @@
 /*   By: iaskour <iaskour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 10:24:56 by iaskour           #+#    #+#             */
-/*   Updated: 2025/07/15 13:08:03 by iaskour          ###   ########.fr       */
+/*   Updated: 2025/07/15 13:19:14 by iaskour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int	parsing(char **argv)
 {
 	int i = 1;
 	while (argv[i]){
-		if (argv[i][0] = '\0')
-			return -1;
+		if ()
 		i++;
 	}
 }
