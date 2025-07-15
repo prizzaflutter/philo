@@ -1,10 +1,10 @@
 CC = cc 
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 NAME = philo
 
-SRC = main.c 
+SRC = main.c ft_atoi.c utils.c
 
 OBJ = $(SRC:%.c=%.o)
 

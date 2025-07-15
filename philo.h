@@ -5,23 +5,32 @@
 #include <unistd.h>
 #include <pthread.h>
 #include <sys/time.h>
+#include <stdlib.h>
 
 int	ft_atoi(const char *str);
 int	ft_strcmp(const char *s1, const char *s2);
+size_t getcurrenttime();
+int ft_usleep(size_t msecond);
 
-typedef struct s_philo_config{
-	long	time_to_eat;
+typedef struct s_philo t_philo;
+
+typedef struct s_config{
+	long	nb_philo;
 	long	time_to_die;
-	long	time_to_slepp;
+	long	time_to_eat;
+	long	time_to_sleep;
 	long	mini_meals;
-	pthread_mutex_t 	left_fork;
-	pthread_mutex_t		right_fork;
-}	config;
+	t_philo	*philosopher;
+	pthread_mutex_t	*forks;
+}	t_config;
 
-typedef struct s_philo {
-	long	id;
-
-}	t_philo;
-
+struct s_philo {
+	int				id;
+	pthread_t		th;
+	t_config		*config;
+	long			last_time_eat;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
+};
 
 #endif

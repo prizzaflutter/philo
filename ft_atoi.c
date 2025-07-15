@@ -6,20 +6,11 @@
 /*   By: iaskour <iaskour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 13:11:50 by iaskour           #+#    #+#             */
-/*   Updated: 2025/07/15 13:20:48 by iaskour          ###   ########.fr       */
+/*   Updated: 2025/07/15 13:28:51 by iaskour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-char	*is_overflow(int set, char	*new_status)
-{
-	static char	*is_overflow;
-
-	if (set)
-		is_overflow = new_status;
-	return (is_overflow);
-}
 
 int	ft_isdigit(int c)
 {
@@ -50,7 +41,7 @@ int	ft_atoi(const char *str)
 	{
 		num = num * 10 + (*str - '0');
 		if (num < holder)
-			return (is_overflow(1, "overflow"), -(muns + 1) / 2);
+			return (-(muns + 1) / 2);
 		holder = num;
 		str++;
 	}
