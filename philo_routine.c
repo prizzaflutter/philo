@@ -6,7 +6,7 @@
 /*   By: iaskour <iaskour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 09:52:40 by iaskour           #+#    #+#             */
-/*   Updated: 2025/07/19 11:33:03 by iaskour          ###   ########.fr       */
+/*   Updated: 2025/07/19 12:14:48 by iaskour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	philo_eat(t_philo *philo)
 	}
 	print_mutex(philo, "is eating");
 	ft_usleep(philo->config->time_to_eat);
-	pthread_mutex_lock(philo->config->philo_died);
+	pthread_mutex_lock(&philo->config->philo_died);
 	philo->config->mini_meals++;
 	philo->last_time_eat = getcurrenttime();
-	pthread_mutex_unlock(philo->config->philo_died);
+	pthread_mutex_unlock(&philo->config->philo_died);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 }

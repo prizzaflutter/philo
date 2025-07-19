@@ -6,7 +6,7 @@
 /*   By: iaskour <iaskour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 10:24:56 by iaskour           #+#    #+#             */
-/*   Updated: 2025/07/19 11:19:58 by iaskour          ###   ########.fr       */
+/*   Updated: 2025/07/19 12:24:28 by iaskour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,6 @@ int	parse_args(char **argv)
 		i++;
 	}
 	return (1);
-}
-
-/// philosopher routine
-
-void *philosopher_routine(void *philo)
-{
-	(void)arg;
 }
 
 void print_config(t_config *config)
@@ -58,8 +51,13 @@ void *philo_routine(void *philo)
 {
 	t_philo *p;
 	p = (t_philo *)philo;
-	
-	return ;
+	while (!simulation_checker(p))
+	{
+		philo_eat(p);
+		philo_sleep(p);
+		print_mutex(p, "is thinking");
+	}
+	return NULL;
 }
 
 int init_config(char **args, t_config *config)
@@ -75,13 +73,20 @@ int init_config(char **args, t_config *config)
 		config->mini_meals = -1;
 	config->simulation_end = 0;
 	config->start_time = getcurrenttime();
-	if (pthread_mutex_init(config->print, NULL) != 0)
-		return (-1);
-	if (pthread_mutex_init(config->philo_died, NULL) != 0)
-		return (-1);
+
+	// config->print = malloc(sizeof(pthread_mutex_t));
+	// memset(config->print, 0, sizeof(pthread_mutex_t));
+	// config->philo_died = malloc(sizeof(pthread_mutex_t));
+	// memset(config->philo_died, 0, sizeof(pthread_mutex_t));
 	config->forks = malloc (sizeof(pthread_mutex_t) * config->nb_philo);
+	memset(config->forks, 0, sizeof(pthread_mutex_t) * config->nb_philo);
 	config->philosopher = malloc(sizeof(t_philo) * config->nb_philo);
+	memset(config->philosopher, 0, sizeof(t_philo) * config->nb_philo);
 	if (!config->philosopher || !config->forks)
+		return (-1); 
+	if (pthread_mutex_init(&config->print, NULL) != 0)
+		return (-1); 
+	if (pthread_mutex_init(&config->philo_died, NULL) != 0)
 		return (-1);
 	while (i < config->nb_philo)
 	{
@@ -95,18 +100,20 @@ int init_config(char **args, t_config *config)
 	while (i < config->nb_philo)
 	{
 		philo = config->philosopher + i;
+		philo->config = config;
 		philo->id = i + 1;
 		philo->last_time_eat = getcurrenttime();
 		philo->right_fork = config->forks + i;
 		philo->left_fork = config->forks + ((i + 1) % config->nb_philo);
 		if (pthread_create(&config->philosopher->th, NULL, philo_routine, philo) != 0)
 		{
-			int j = 0; 
+			int j = 0;
+			pthread_mutex_lock(&config->philo_died);
+			config->simulation_end = 1;
+			pthread_mutex_unlock(&config->philo_died);
 			while (j < i)
 			{
-				if (!config->simulation_end)
-					config->simulation_end = 1;
-				pthread_join(&config->philosopher->th, NULL);
+				pthread_join(config->philosopher->th, NULL);
 				j++;
 			}
 			/// join
@@ -117,7 +124,7 @@ int init_config(char **args, t_config *config)
 	int k = 0;
 	while (k < config->nb_philo)
 	{
-		pthread_join(&config->philosopher->th, NULL);
+		pthread_join(config->philosopher->th, NULL);
 		k++;
 	}
 	return (1);
@@ -130,6 +137,7 @@ int main (int argc, char **argv)
 	config = malloc(sizeof(t_config));
 	if (!config)
 		return (-1);
+	memset(config, 0, sizeof(t_config));
 	if (argc != 5 && argc != 6)
 		return (printf("invalid arguments number\n"), 1);
 	if (parse_args(argv) == -1)

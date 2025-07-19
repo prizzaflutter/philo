@@ -6,7 +6,7 @@
 /*   By: iaskour <iaskour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:53:32 by iaskour           #+#    #+#             */
-/*   Updated: 2025/07/15 13:35:13 by iaskour          ###   ########.fr       */
+/*   Updated: 2025/07/19 11:50:41 by iaskour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /// @brief custimise usleep to use milliseconds
 
 
-size_t getcurrenttime()
+long	getcurrenttime()
 {
 	struct timeval eval;
 
