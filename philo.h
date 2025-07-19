@@ -7,10 +7,10 @@
 #include <sys/time.h>
 #include <stdlib.h>
 
-int	ft_atoi(const char *str);
-int	ft_strcmp(const char *s1, const char *s2);
-size_t getcurrenttime();
-int ft_usleep(size_t msecond);
+int		ft_atoi(const char *str);
+size_t	getcurrenttime();
+int		ft_usleep(size_t msecond);
+void	print_mutex(t_philo *philo, const char *message);
 
 typedef struct s_philo t_philo;
 
@@ -20,8 +20,12 @@ typedef struct s_config{
 	long	time_to_eat;
 	long	time_to_sleep;
 	long	mini_meals;
+	int		simulation_end;
+	long	start_time;
 	t_philo	*philosopher;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t *print;
+	pthread_mutex_t *philo_died;
 }	t_config;
 
 struct s_philo {
