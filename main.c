@@ -6,7 +6,7 @@
 /*   By: iaskour <iaskour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 10:24:56 by iaskour           #+#    #+#             */
-/*   Updated: 2025/07/19 12:24:28 by iaskour          ###   ########.fr       */
+/*   Updated: 2025/07/19 14:52:24 by iaskour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,16 @@ void *philo_routine(void *philo)
 {
 	t_philo *p;
 	p = (t_philo *)philo;
-	while (!simulation_checker(p))
+	// if ((p->id % 2) == 0)
+	// 	ft_usleep(p->config->time_to_die / 2);
+	while (!simulation_checker(p->config))
 	{
+		if (p->config->nb_philo == 1)
+		{
+			print_mutex(p, "has taken a fork");
+			philo_sleep(p);
+			return NULL;
+		}
 		philo_eat(p);
 		philo_sleep(p);
 		print_mutex(p, "is thinking");
@@ -63,6 +71,7 @@ void *philo_routine(void *philo)
 int init_config(char **args, t_config *config)
 {
 	int i = 0;
+	pthread_t m_thread;
 	config->nb_philo = ft_atoi(args[1]);
 	config->time_to_die = ft_atoi(args[2]);
 	config->time_to_eat = ft_atoi(args[3]);
@@ -105,7 +114,7 @@ int init_config(char **args, t_config *config)
 		philo->last_time_eat = getcurrenttime();
 		philo->right_fork = config->forks + i;
 		philo->left_fork = config->forks + ((i + 1) % config->nb_philo);
-		if (pthread_create(&config->philosopher->th, NULL, philo_routine, philo) != 0)
+		if (pthread_create(&philo->th, NULL, philo_routine, philo) != 0)
 		{
 			int j = 0;
 			pthread_mutex_lock(&config->philo_died);
@@ -113,7 +122,7 @@ int init_config(char **args, t_config *config)
 			pthread_mutex_unlock(&config->philo_died);
 			while (j < i)
 			{
-				pthread_join(config->philosopher->th, NULL);
+				pthread_join(philo->th, NULL);
 				j++;
 			}
 			/// join
@@ -121,10 +130,14 @@ int init_config(char **args, t_config *config)
 		}
 		i++;
 	}
+	if (pthread_create(&m_thread, NULL, monitory, config) != 0)
+		return  -1;
+	pthread_join(m_thread, NULL);
 	int k = 0;
 	while (k < config->nb_philo)
 	{
-		pthread_join(config->philosopher->th, NULL);
+		philo = config->philosopher + k;
+		pthread_join(philo->th, NULL);
 		k++;
 	}
 	return (1);
@@ -143,6 +156,6 @@ int main (int argc, char **argv)
 	if (parse_args(argv) == -1)
 		return (printf("invalid number\n"), 1);
 	init_config(argv, config);
-	print_config(config);
+	// print_config(config);
 	return 1;
 }

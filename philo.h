@@ -29,6 +29,7 @@ struct s_philo {
 	pthread_t		th;
 	t_config		*config;
 	long			last_time_eat;
+	long			meals_eaten;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 };
@@ -39,7 +40,8 @@ long	getcurrenttime();
 int		ft_usleep(size_t msecond);
 void	print_mutex(t_philo *philo, const char *message);
 void	philo_eat(t_philo *philo);
-int		simulation_checker(t_philo *philo);
+int		simulation_checker(t_config *config);
 void	philo_sleep(t_philo *philo);
+void	*monitory(void *arg);
 
 #endif
