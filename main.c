@@ -6,7 +6,7 @@
 /*   By: iaskour <iaskour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 10:24:56 by iaskour           #+#    #+#             */
-/*   Updated: 2025/07/19 14:52:24 by iaskour          ###   ########.fr       */
+/*   Updated: 2025/07/20 20:39:29 by iaskour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void *philo_routine(void *philo)
 {
 	t_philo *p;
 	p = (t_philo *)philo;
-	// if ((p->id % 2) == 0)
-	// 	ft_usleep(p->config->time_to_die / 2);
+	if ((p->id % 2) == 0)
+		ft_usleep(p->config->time_to_eat / 2);
 	while (!simulation_checker(p->config))
 	{
 		if (p->config->nb_philo == 1)

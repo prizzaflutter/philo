@@ -6,7 +6,7 @@
 /*   By: iaskour <iaskour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 09:52:40 by iaskour           #+#    #+#             */
-/*   Updated: 2025/07/19 14:14:59 by iaskour          ###   ########.fr       */
+/*   Updated: 2025/07/20 20:39:39 by iaskour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void	philo_eat(t_philo *philo)
 {
-	if	((philo->id % 2) == 0)
-	{
-		pthread_mutex_lock(philo->left_fork);
-		print_mutex(philo, "has taken a fork");
+	// if	((philo->id % 2) == 0)
+	// {
+	// 	pthread_mutex_lock(philo->left_fork);
+	// 	print_mutex(philo, "has taken a fork");
+	// 	pthread_mutex_lock(philo->right_fork);
+	// 	print_mutex(philo, "has taken a fork");
+	// }
+	// else
+	// {
 		pthread_mutex_lock(philo->right_fork);
 		print_mutex(philo, "has taken a fork");
-	}
-	else
-	{
-		pthread_mutex_lock(philo->right_fork);
-		print_mutex(philo, "has taken a fork");
 		pthread_mutex_lock(philo->left_fork);
 		print_mutex(philo, "has taken a fork");
-	}
+	// }
 	print_mutex(philo, "is eating");
 	ft_usleep(philo->config->time_to_eat);
 	pthread_mutex_lock(&philo->config->philo_died);

@@ -6,7 +6,7 @@
 /*   By: iaskour <iaskour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 13:16:54 by iaskour           #+#    #+#             */
-/*   Updated: 2025/07/19 14:45:03 by iaskour          ###   ########.fr       */
+/*   Updated: 2025/07/20 20:39:10 by iaskour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*monitory(void *arg)
 		t_philo *philo;
 		while (i < config->nb_philo)
 		{
-			philo = config->philosopher;
+			philo = config->philosopher + i;
 			pthread_mutex_lock(&config->philo_died);
 			time_wait = (getcurrenttime() - philo->last_time_eat);
 			pthread_mutex_unlock(&config->philo_died);
@@ -50,7 +50,7 @@ void	*monitory(void *arg)
 			config->simulation_end = 1;
 			pthread_mutex_unlock(&config->philo_died);
 		}
-		// usleep(100);
+		usleep(100);
 	}
 	return NULL;
 }
