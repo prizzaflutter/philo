@@ -16,13 +16,13 @@
 205 1 is eating
 265 3 is thinking
 265 3 has taken a fork
-265 1 is sleeping
 265 3 has taken a fork
 265 3 is eating
-325 3 is sleeping
+265 1 is sleeping
 325 2 is thinking
 325 2 has taken a fork
 325 2 has taken a fork
+325 3 is sleeping
 325 2 is eating
 385 2 is sleeping
 410 1 is thinking
@@ -34,9 +34,9 @@
 470 3 has taken a fork
 470 3 has taken a fork
 470 3 is eating
+530 3 is sleeping
 530 2 is thinking
 530 2 has taken a fork
-530 3 is sleeping
 530 2 has taken a fork
 530 2 is eating
 590 2 is sleeping
@@ -44,14 +44,14 @@
 615 1 has taken a fork
 615 1 has taken a fork
 615 1 is eating
+675 1 is sleeping
 675 3 is thinking
 675 3 has taken a fork
-675 1 is sleeping
 675 3 has taken a fork
 675 3 is eating
-735 3 is sleeping
 735 2 is thinking
 735 2 has taken a fork
+735 3 is sleeping
 735 2 has taken a fork
 735 2 is eating
 795 2 is sleeping
@@ -59,14 +59,14 @@
 820 1 has taken a fork
 820 1 has taken a fork
 820 1 is eating
+880 1 is sleeping
 880 3 is thinking
 880 3 has taken a fork
-880 1 is sleeping
 880 3 has taken a fork
 880 3 is eating
-940 3 is sleeping
 940 2 is thinking
 940 2 has taken a fork
+940 3 is sleeping
 940 2 has taken a fork
 940 2 is eating
 1000 2 is sleeping
@@ -96,9 +96,9 @@
 1290 3 is eating
 1350 2 is thinking
 1350 2 has taken a fork
+1350 3 is sleeping
 1350 2 has taken a fork
 1350 2 is eating
-1350 3 is sleeping
 1410 2 is sleeping
 1435 1 is thinking
 1435 1 has taken a fork
@@ -109,36 +109,36 @@
 1495 3 has taken a fork
 1495 3 has taken a fork
 1495 3 is eating
+1555 3 is sleeping
 1555 2 is thinking
 1555 2 has taken a fork
 1555 2 has taken a fork
 1555 2 is eating
-1555 3 is sleeping
 1615 2 is sleeping
 1640 1 is thinking
 1640 1 has taken a fork
 1640 1 has taken a fork
 1640 1 is eating
+1700 1 is sleeping
 1700 3 is thinking
 1700 3 has taken a fork
 1700 3 has taken a fork
 1700 3 is eating
-1700 1 is sleeping
 1760 2 is thinking
 1760 2 has taken a fork
+1760 3 is sleeping
 1760 2 has taken a fork
 1760 2 is eating
-1760 3 is sleeping
 1820 2 is sleeping
 1845 1 is thinking
 1845 1 has taken a fork
 1845 1 has taken a fork
 1845 1 is eating
-1905 1 is sleeping
 1905 3 is thinking
 1905 3 has taken a fork
 1905 3 has taken a fork
 1905 3 is eating
+1905 1 is sleeping
 1965 3 is sleeping
 1965 2 is thinking
 1965 2 has taken a fork

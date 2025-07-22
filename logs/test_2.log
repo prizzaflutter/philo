@@ -1,10 +1,16 @@
 0 1 has taken a fork
 0 1 has taken a fork
 0 1 is eating
-0 3 has taken a fork
-0 3 has taken a fork
-0 3 is eating
 0 5 has taken a fork
 0 5 has taken a fork
 0 5 is eating
-181 1 died
+0 3 has taken a fork
+0 3 has taken a fork
+0 3 is eating
+181 1 is sleeping
+181 5 is sleeping
+181 3 is sleeping
+181 2 died
+181 2 has taken a fork
+181 6 has taken a fork
+181 4 has taken a fork

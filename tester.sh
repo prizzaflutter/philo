@@ -24,7 +24,7 @@ TESTS=(
   "DIE 5 180 180 60 2"
   "DIE 7 120 60 60 2"
   "DIE 3 800 300 60 2"
-  "DIE 19 210 71 60 2"
+  "DIE 19 210 71 60 2" ==> problem over here
 
   # Should NOT DIE
   "NODIE 4 410 200 200 10"
