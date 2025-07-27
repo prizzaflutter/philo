@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iaskour <iaskour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 13:11:50 by iaskour           #+#    #+#             */
-/*   Updated: 2025/07/26 14:12:52 by iaskour          ###   ########.fr       */
+/*   Created: 2025/07/15 12:53:32 by iaskour           #+#    #+#             */
+/*   Updated: 2025/07/23 12:37:16 by iaskour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long	ft_atoi(const char *str)
+long	getcurrenttime(void)
 {
-	long	num;
-	long	holder;
+	struct timeval	eval;
 
-	holder = 0;
-	while (*str != '\0' && ((*str >= 9 && *str <= 13) || (*str == 32)))
-		str++;
-	if (*str == '+')
-		str++;
-	num = 0;
-	while (ft_isdigit(*str))
+	if (gettimeofday(&eval, NULL) == -1)
+		return (printf("error geting time of today\n"), 1);
+	return (eval.tv_sec * 1000 + eval.tv_usec / 1000);
+}
+
+int	ft_usleep(long msecond, t_config *config)
+{
+	long	curr_time;
+
+	curr_time = getcurrenttime();
+	while ((getcurrenttime() - curr_time) < msecond)
 	{
-		num = num * 10 + (*str - '0');
-		if (num > 2147483647)
-			return (0);
-		str++;
+		if (simulation_checker(config))
+			break ;
+		usleep(300);
 	}
-	return (num);
+	return (0);
 }
